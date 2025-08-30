@@ -10,7 +10,6 @@ import { errorHandler } from "./errorHandler.js";
 const app = express();
 const port = process.env.PORT || 8000;
 
-app.use(express.json());
 app.use(
   cors({
     origin: ["http://localhost:5173", "https://mylibraryhub-frontend.onrender.com"], // add your frontend domain here
@@ -18,6 +17,8 @@ app.use(
     credentials: true, // if you use cookies or auth headers
   })
 );
+app.use(express.json());
+
 const connectDB = async () => {
     try {
         await mongoose.connect(process.env.MONGOURI);
