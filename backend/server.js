@@ -12,7 +12,7 @@ const port = process.env.PORT || 8000;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://mylibraryhub-frontend.onrender.com"], // add your frontend domain here
+    origin: ["http://localhost:5173", "https://mylibraryhub.onrender.com"], // add your frontend domain here
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // if you use cookies or auth headers
   })
