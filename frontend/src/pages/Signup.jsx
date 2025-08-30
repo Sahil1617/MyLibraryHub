@@ -25,7 +25,7 @@ const Signup = () => {
     setSuccess("");
 
     try {
-      const res = await axios.post("http://localhost:8000/auth/signup", formData);
+      const res = await axios.post("https://mylibraryhub-backend.onrender.com/auth/signup", formData);
       setSuccess(res.data.message || "Signup successful! Please login.");
       setTimeout(() => navigate("/login"), 1500);
     } catch (err) {

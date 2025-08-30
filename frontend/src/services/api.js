@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8000", // backend URL
+  baseURL: "https://mylibraryhub-backend.onrender.com", // backend URL
 });
 
 // Attach token automatically
