@@ -1,6 +1,7 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import sendEmail from "../utils/emailService.js";
 
 const router = express.Router();
 
@@ -16,6 +17,12 @@ router.post("/signup", async (req, res) => {
 
     const user = new User({ name, email, password });
     await user.save();
+
+    await sendEmail(
+       user.email,
+      "Welcome to Book Library Manager!",
+      `Hi ${user.name},\n\nWelcome to MyLibraryHub! 🎉\nYou can now start managing your books easily.\n\nHappy reading! 📚`
+    );
 
     const token = jwt.sign(
       { id: user._id, email: user.email },

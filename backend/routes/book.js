@@ -1,6 +1,7 @@
 import express from "express";
 import Book from "../models/Book.js";
 import auth from "../middleware.js";
+import sendEmail from "../utils/emailService.js";
 
 const router = express.Router();
 
@@ -83,6 +84,11 @@ router.post("/", auth, async (req, res) => {
     });
 
     const savedBook = await book.save();
+    await sendEmail(
+      req.user.email, // user’s email from token
+      "New Book Added 📚",
+      `You added "${savedBook.title}" to your library.`
+    );
     res.status(201).json(savedBook);
   } catch (error) {
     console.error("❌ Error creating book:", error);
