@@ -14,11 +14,8 @@ function About() {
               </Link>
             </li>
             <li>
-              <Link
-                to="/about"
-                className="hover:text-gray-200 transition font-semibold underline"
-              >
-                About
+              <Link to="/library" className="hover:text-gray-200 transition">
+                Library
               </Link>
             </li>
             <li>

@@ -1,20 +1,25 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
+import { ScaleLoader } from "react-spinners";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await API.post("/auth/login", { email, password });
       localStorage.setItem("token", res.data.token);
       navigate("/library");
     } catch (err) {
       alert("Login failed!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -41,9 +46,16 @@ function Login() {
           />
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700 transition duration-200"
+            disabled={loading}
+            className={`w-full flex justify-center items-center text-white p-3 rounded transition duration-200 ${
+              loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+            }`}
           >
-            Login
+            {loading ? (
+              <ScaleLoader color="#ffffff" height={15} />
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
         <p className="mt-4 text-center text-gray-600">

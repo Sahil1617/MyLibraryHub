@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../services/api";
+import {FadeLoader} from "react-spinners";
 import {
   PieChart,
   Pie,
@@ -42,11 +43,12 @@ function Dashboard() {
   }, []);
 
   if (!stats)
-    return (
-      <p className="text-center text-lg mt-24 text-gray-600 animate-pulse">
-        Loading...
-      </p>
-    );
+  return (
+    <div className="flex justify-center items-center mt-24">
+      <FadeLoader color="#2563eb" size={200} />
+      <h4>Loading</h4>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -66,11 +68,16 @@ function Dashboard() {
               </Link>
             </li>
             <li>
+              <Link to="/library" className="hover:text-gray-200 transition">
+                Library
+              </Link>
+            </li>
+            <li>
               <button
                 onClick={handleSignOut}
                 className="hover:text-gray-200 transition"
               >
-                Sign Out
+                SignOut
               </button>
             </li>
           </ul>
