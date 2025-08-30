@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../services/api";
+import { FadeLoader } from "react-spinners";
 
 function BookList({ books, setBooks, setEditingBook, fetchBooks }) {
   const navigate = useNavigate();
@@ -101,6 +102,7 @@ function BookList({ books, setBooks, setEditingBook, fetchBooks }) {
         {books.length === 0 ? (
           <p className="p-6 text-gray-500 text-center">
             No books found. Add some!
+            <FadeLoader color="#2563eb" size={200} />
           </p>
         ) : (
           <table className="min-w-full text-sm text-left">
