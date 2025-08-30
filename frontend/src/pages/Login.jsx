@@ -47,7 +47,7 @@ function Login() {
           </button>
         </form>
         <p className="mt-4 text-center text-gray-600">
-          Don't have an account? <span className="text-blue-600 cursor-pointer hover:underline">Sign up</span>
+          Don't have an account? <span className="text-blue-600 cursor-pointer hover:underline" onClick={() => navigate("/signup")}>Sign up</span>
         </p>
       </div>
     </div>
