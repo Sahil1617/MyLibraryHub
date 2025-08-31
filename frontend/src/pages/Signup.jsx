@@ -19,15 +19,16 @@ const Signup = () => {
     });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setSuccess("");
 
     try {
-      const res = await axios.post("https://mylibraryhub-backend.onrender.com/auth/signup", formData);
+      const res = await axios.post("https://mylibraryhub-backend.onrender.com/auth/signup", formData, { headers: { "Content-Type": "application/json" } });
       setSuccess(res.data.message || "Signup successful! Please login.");
-      setTimeout(() => navigate("/login"), 1500);
+      setTimeout(() => navigate("/login"), 1000);
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed. Try again.");
     }
